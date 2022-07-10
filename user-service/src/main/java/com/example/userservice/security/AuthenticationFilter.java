@@ -69,5 +69,26 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
+        String userName = ((User)authResult.getPrincipal()).getUsername();
+        UserDto userDetails = userService.getUserDetailsByEmail(userName);
+//        String token = Jwts.builder()
+//                .setSubject(userDetails.getUserId())
+//                .setExpiration(new Date(System.currentTimeMillis() +
+//                        Long.parseLong(env.getProperty("token.expiration_time"))))
+//                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
+//                .compact();
+
+//        response.addHeader("token", token);
+//        response.addHeader("userId", userDetails.getUserId());
+        String token = Jwts.builder()
+                .setSubject(userDetails.getUserId())
+                .setExpiration(new Date(System.currentTimeMillis() +
+                        Long.parseLong(env.getProperty("token.expiration_time"))))
+                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
+                .compact();
+
+        response.addHeader("token", token);
+        response.addHeader("userId", userDetails.getUserId());
+
     }
 }
