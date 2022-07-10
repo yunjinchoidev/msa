@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/")
 public class UserController {
 
     private Environment env;
@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/heath_check")
     public String status(){
         return String.format("It's Working in User Service"
-                + ", port(local.server.port)=" + env.getProperty("local.server.port"));
+                + ", port(local.server.port)=" + env.getProperty("server.port"));
     }
 
 //    @GetMapping("/welcome")
