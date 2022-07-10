@@ -1,4 +1,8 @@
 package com.example.catalogservice.service;
 
-public class CatalogService {
+import com.example.catalogservice.jpa.CatalogEntity;
+
+public interface CatalogService {
+    Iterable<CatalogEntity> getAllCatalogs();
+
 }
