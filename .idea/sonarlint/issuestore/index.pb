@@ -67,8 +67,6 @@ q
 A.idea/libraries/Maven__io_netty_netty_codec_http_4_1_78_Final.xml,e\5\e5c515bd575c7193527cee3daf7c2b2247f56b70
 r
 B.idea/libraries/Maven__io_netty_netty_codec_http2_4_1_78_Final.xml,0\8\086df9f37733f18d6836075ef702c815e97ea9bb
-Š
-Zcatalog-service/src/main/java/com/example/catalogservice/controller/CatalogController.java,6\1\619d3e671feb23eb532cf55be09d66e8aaefbd48
 |
 Lcatalog-service/src/main/java/com/example/catalogservice/dto/CatalogDto.java,a\9\a988631f397a33e8ea3585e1b3a56f636f03f173
 
