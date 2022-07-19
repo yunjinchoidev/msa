@@ -48,6 +48,7 @@ greeting :
 logging:
   level:
     com.example.userservice: DEBUG
+    com.example.userservice.client: DEBUG
 
 token:
   expiration_time: 86400000
@@ -57,4 +58,5 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, httptrace, busrefresh
+        include: refresh, health, beans, httptrace, busrefresh, info, prometheus, metrics
+
