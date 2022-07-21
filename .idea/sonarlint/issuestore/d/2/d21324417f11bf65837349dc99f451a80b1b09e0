@@ -1,0 +1,7 @@
+
+
+java:S14885"lImmediately return this expression instead of assigning it to the temporary variable "authenticationFilter".(ü…“øÿÿÿÿ8áé¸0
+Z
+java:S1874"DRemove this use of "WebSecurityConfigurerAdapter"; it is deprecated.(¦¬Ã™
+X	java:S125"<This block of commented-out lines of code should be removed.(×úçÇ8¨Ó¸0
+]	java:S125,"<This block of commented-out lines of code should be removed.(†±§áşÿÿÿÿ8´Ó¸0

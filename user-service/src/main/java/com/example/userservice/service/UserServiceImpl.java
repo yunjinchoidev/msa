@@ -4,6 +4,8 @@ import com.example.userservice.client.OrderServiceClient;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.jpa.UserRepository;
+import com.example.userservice.vo.RequestUpdateUser;
+import com.example.userservice.vo.RequestUser;
 import com.example.userservice.vo.ResponseOrder;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -31,6 +33,8 @@ public class UserServiceImpl implements UserService{
 
     CircuitBreakerFactory circuitBreakerFactory;
 
+    ModelMapper modelMapper;
+
 
 
 
@@ -45,13 +49,17 @@ public class UserServiceImpl implements UserService{
         return new User(userEntity.getEmail(), userEntity.getEncryptedPwd(), true, true, true, true, new ArrayList<>());
     }
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder,
-                           Environment env, OrderServiceClient orderServiceClient, CircuitBreakerFactory circuitBreakerFactory) {
+    public UserServiceImpl(UserRepository userRepository,
+                           BCryptPasswordEncoder passwordEncoder,
+                           Environment env, OrderServiceClient orderServiceClient,
+                           CircuitBreakerFactory circuitBreakerFactory,
+                           ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.env = env;
         this.orderServiceClient = orderServiceClient;
         this.circuitBreakerFactory = circuitBreakerFactory;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -114,5 +122,25 @@ public class UserServiceImpl implements UserService{
         return userDto;
     }
 
+    @Override
+    public UserDto updateUsers(RequestUser param) {
+        UserEntity userEntity = userRepository.findByEmail(param.getEmail());
+        if (userEntity == null){
+            throw new UsernameNotFoundException("User not found");
+        }
 
+        userEntity.setEncryptedPwd(passwordEncoder.encode(param.getPwd()));
+        UserEntity returnEntity = userRepository.save(userEntity);
+        return modelMapper.map(returnEntity, UserDto.class);
+    }
+
+    @Override
+    public UserDto deleteUser(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        if (userEntity == null){
+            throw new UsernameNotFoundException("User not found");
+        }
+        userRepository.deleteById(userEntity.getId());
+        return modelMapper.map(userEntity, UserDto.class);
+    }
 }

@@ -7,19 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="discoveryservice" />
         <module name="config-server" />
+        <module name="apigateway-service" />
+        <module name="event-service" />
+        <module name="catalog-service" />
+        <module name="notice-service" />
+        <module name="discoveryservice" />
         <module name="user-service" />
         <module name="order-service" />
-        <module name="apigateway-service" />
-        <module name="catalog-service" />
+        <module name="basket-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="apigateway-service" target="11" />
+      <module name="basket-service" target="11" />
       <module name="catalog-service" target="11" />
       <module name="config-server" target="11" />
       <module name="discoveryservice" target="11" />
+      <module name="event-service" target="11" />
+      <module name="notice-service" target="11" />
       <module name="order-service" target="11" />
       <module name="user-service" target="11" />
     </bytecodeTargetLevel>
@@ -27,9 +33,12 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="apigateway-service" options="-parameters" />
+      <module name="basket-service" options="-parameters" />
       <module name="catalog-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discoveryservice" options="-parameters" />
+      <module name="event-service" options="-parameters" />
+      <module name="notice-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

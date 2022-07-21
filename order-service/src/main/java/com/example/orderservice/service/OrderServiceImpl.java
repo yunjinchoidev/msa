@@ -21,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto createOrder(OrderDto orderDto) {
-        orderDto.setOrderId(UUID.randomUUID().toString());
-        orderDto.setTotalPrice(orderDto.getQty() * orderDto.getUnitPrice());
+        orderDto.setOrderId(UUID.randomUUID().toString()); // 랜덤으로 넣어줌
+        orderDto.setTotalPrice(orderDto.getQty() * orderDto.getUnitPrice()); // 전체 가격 계산
 
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);

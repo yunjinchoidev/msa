@@ -4,6 +4,7 @@ import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.service.UserService;
 import com.example.userservice.vo.Greeting;
+import com.example.userservice.vo.RequestUpdateUser;
 import com.example.userservice.vo.RequestUser;
 import com.example.userservice.vo.ResponseUser;
 import com.netflix.discovery.converters.Auto;
@@ -83,5 +84,24 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(responseValue);
     }
+
+
+    @PutMapping("/users")
+    public ResponseEntity<ResponseUser> updateUsers(
+                                @RequestBody RequestUser param){
+        UserDto userDto = userService.updateUsers(param);
+        ResponseUser responseUser = new ModelMapper().map(userDto, ResponseUser.class);
+        return ResponseEntity.status(HttpStatus.OK).body(responseUser);
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<ResponseUser> leaveUsers(@PathVariable String userId){
+        UserDto userDto = userService.deleteUser(userId);
+        ResponseUser responseUser = new ModelMapper().map(userDto, ResponseUser.class);
+        return ResponseEntity.status(HttpStatus.OK).body(responseUser);
+    }
+
+
+
 
 }

@@ -52,26 +52,24 @@ spring:
 #            - Path=/user-service/**
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
-
           predicates:
             - Path=/catalog-service/**
-            - Method=GET
+            - Method=GET, POST
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-
+            - RewritePath=/catalog-service/(?<segment>.*), /$\{segment}
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-            - Method=GET
+            - Method=GET,POST
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
 
 
 
-
+#
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
@@ -85,7 +83,7 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/users
-            - Method=POST
+            - Method=POST, PUT, DELETE
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
@@ -94,7 +92,7 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
-            - Method=GET
+            - Method=GET, PUT, DELETE6
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
@@ -108,6 +106,8 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+
+
 
 
 
